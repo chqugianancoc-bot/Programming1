@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adarek's Car Rental</title>
+
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+  background:#f5f5f5;
+  overflow-x:hidden;
+}
+
+
+/* HEADER */
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:999;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+  color:#222;
+}
+
+
+nav a{
+  margin:0 15px;
+  text-decoration:none;
+  color:#222;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+
+nav a:hover{
+  color:#ffb703;
+}
+
+
+.search input{
+  padding:8px 15px;
+  border-radius:25px;
+  border:1px solid #ccc;
+  outline:none;
+}
+
+
+/* HERO */
+.hero{
+  width:100%;
+  min-height:90vh;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:50px 60px;
+  position:relative;
+  z-index:10;
+}
+
+
+.hero-text{
+  width:50%;
+}
+
+
+.hero-text h1{
+  font-size:60px;
+  color:#111;
+}
+
+
+.hero-text p{
+  margin:20px 0;
+  font-size:16px;
+  color:#444;
+  line-height:1.6;
+}
+
+
+.hero-text button{
+  padding:12px 30px;
+  background:#ffb703;
+  border:none;
+  border-radius:30px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+
+.hero-text button:hover{
+  background:#111;
+  color:white;
+}
+
+
+.hero-image{
+  width:50%;
+  text-align:right;
+}
+
+
+.hero-image img{
+  width:550px;
+  max-width:100%;
+  filter:drop-shadow(0 10px 15px rgba(0,0,0,0.25));
+}
+
+
+/* SHAPES */
+.yellow{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:100px;
+  background:#ffb703;
+  clip-path:polygon(0 40%,100% 0,100% 100%,0 100%);
+  z-index:1;
+}
+
+
+.blue{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:240px;
+  background:#0a58ca;
+  clip-path:polygon(0 60%,100% 15%,100% 100%,0 100%);
+  z-index:0;
+}
+
+
+/* POPUP BOXES */
+.box{
+  position:fixed;
+  top:100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:400px;
+  max-width:90%;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  display:none;
+  z-index:2000;
+}
+
+
+.box h2{
+  margin-bottom:10px;
+  color:#111;
+}
+
+
+.box p{
+  color:#444;
+  line-height:1.6;
+  font-size:14px;
+}
+
+
+.close-btn{
+  margin-top:15px;
+  padding:8px 20px;
+  border:none;
+  border-radius:10px;
+  background:#ffb703;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+
+/* SECTION TITLE */
+.section-title{
+  text-align:center;
+  font-size:35px;
+  margin-bottom:30px;
+  color:#111;
+}
+
+
+/* CARS */
+.cars-section{
+  padding:70px 60px;
+  background:white;
+}
+
+
+.cars{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+}
+
+
+.car-card{
+  width:280px;
+  background:#f9f9f9;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
+  transition:0.3s;
+  text-align:center;
+}
+
+
+.car-card:hover{
+  transform:translateY(-8px);
+}
+
+
+.car-card img{
+  width:100%;
+  height:150px;
+  object-fit:contain;
+}
+
+
+.car-card h3{
+  margin:10px 0;
+  color:#111;
+}
+
+
+.price{
+  font-weight:bold;
+  font-size:16px;
+  color:#0a58ca;
+}
+
+
+/* BOOKING */
+.booking-section{
+  padding:70px 60px;
+  background:#f5f5f5;
+  text-align:center;
+}
+
+
+form{
+  max-width:450px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+
+form input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  outline:none;
+}
+
+
+form button{
+  width:100%;
+  padding:12px;
+  background:#ffb703;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+
+form button:hover{
+  background:#111;
+  color:white;
+}
+
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  header{
+    flex-direction:column;
+    gap:15px;
+    padding:15px;
+  }
+
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+    padding:40px 20px;
+  }
+
+
+  .hero-text{
+    width:100%;
+  }
+
+
+  .hero-text h1{
+    font-size:45px;
+  }
+
+
+  .hero-image{
+    width:100%;
+    text-align:center;
+    margin-top:30px;
+  }
+}
+</style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Adarek's Car Rental</div>
+
+
+  <nav>
+    <a href="#">Home</a>
+    <a onclick="showBox('aboutBox')">About</a>
+    <a onclick="showBox('offerBox')">Offer</a>
+    <a onclick="showBox('contactBox')">Contact</a>
+  </nav>
+
+
+  <div class="search">
+    <input type="text" placeholder="Search..." />
+  </div>
+</header>
+
+
+<!-- POPUP BOXES -->
+<div id="aboutBox" class="box">
+  <h2>About Us</h2>
+  <p>Adarek's Car Rental provides safe and affordable cars for daily use, travel, and long-distance trips.</p>
+  <button class="close-btn" onclick="closeBox('aboutBox')">Close</button>
+</div>
+
+
+<div id="offerBox" class="box">
+  <h2>Our Offer</h2>
+  <p>We offer budget-friendly and premium cars with easy booking and fast service.</p>
+  <button class="close-btn" onclick="closeBox('offerBox')">Close</button>
+</div>
+
+
+<div id="contactBox" class="box">
+  <h2>Contact Us</h2>
+  <p><b>Facebook:</b> Adarek Car Rental</p>
+  <p><b>Gmail:</b> adarekrentacar@gmail.com</p>
+  <button class="close-btn" onclick="closeBox('contactBox')">Close</button>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Adrek`s <br> Car Rental</h1>
+    <p>Affordable Wheels, Endless Journeys. <br>Choose your dream ride today!</p>
+    <button onclick="scrollToBooking()">BOOK NOW</button>
+  </div>
+
+
+  <div class="hero-image">
+    <img src="https://pngimg.com/uploads/bmw/bmw_PNG99541.png" alt="BMW Car">
+  </div>
+
+
+  <div class="yellow"></div>
+  <div class="blue"></div>
+</section>
+
+
+<!-- CARS -->
+<section class="cars-section">
+  <h2 class="section-title">Our Cars</h2>
+  <div class="cars">
+    <div class="car-card">
+      <img src="https://pngimg.com/uploads/mitsubishi/mitsubishi_PNG189.png">
+      <h3>Mitsubishi Mirage</h3>
+      <p class="price">₱1500 / day</p>
+    </div>
+    <div class="car-card">
+      <img src="https://pngimg.com/uploads/honda/honda_PNG10222.png">
+      <h3>Honda Civic</h3>
+      <p class="price">₱3000 / day</p>
+    </div>
+    <div class="car-card">
+      <img src="https://pngimg.com/uploads/toyota/toyota_PNG1925.png">
+      <h3>Toyota Vios</h3>
+      <p class="price">₱2000 / day</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- BOOKING -->
+<section class="booking-section" id="booking">
+  <h2 class="section-title">Book Your Car</h2>
+  <form id="bookingForm">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Contact Number" required>
+    <input type="date" required>
+    <button type="button" onclick="doneBook()">Done Book</button>
+  </form>
+</section>
+
+
+<script>
+function showBox(id){
+  document.getElementById("aboutBox").style.display="none";
+  document.getElementById("offerBox").style.display="none";
+  document.getElementById("contactBox").style.display="none";
+  document.getElementById(id).style.display="block";
+}
+
+
+function closeBox(id){
+  document.getElementById(id).style.display="none";
+}
+
+
+function scrollToBooking(){
+  document.getElementById("booking").scrollIntoView({behavior:"smooth"});
+}
+
+
+function doneBook(){
+  alert("Booking Successful!");
+  document.getElementById("bookingForm").reset();
+}
+</script>
+
+
+</body>
+</html>
+
+
+
